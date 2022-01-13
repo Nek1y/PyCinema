@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Movie Menu</title>
+
+{% endblock %}
+
+{% block body %}
+
+<h2>Список сеансов</h2>
+<table border="1|1">
+    {% for s in movie_list %}
+    <tr>
+        <td>{{ s['ID'] }}</td>
+        <td><a href = "/session/{{s['ID']}}">{{ s['Movie_name'] }}</td>
+        <td>{{ s['Time'] }}</td>
+        <td>{{ s['Hall_name'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

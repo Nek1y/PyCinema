@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Session Menu</title>
+{% endblock %}
+
+{% block body %}
+
+<h2>Выбор места</h2>
+<table border="1|1">
+    {% set hall_data = session_data %}
+    {% for i in hall_data %}
+    <tr>
+        {% for j in i %}
+            <td><div data= {{j}} style="width:50px;height:50px;">{{j}}</div></td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+
+<form action="/update_session" method="post">
+    <p>Бронь места</p>
+    
+    <p>Введите ряд</p>
+    <input type="text" name="row">
+    <p>Введите место:</p>
+    <input type="text" name="column">
+    <input type="hidden" name="session_id" value={{session_id}}>
+    <input type="submit" value="Забронировать">
+</form>
+
+
+{% endblock %}

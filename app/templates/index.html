@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>PyCinema</title>
+<script src="{{url_for('static', filename='js/util.js')}}" ></script>
+
+{% endblock %}
+
+{% block body %}
+
+<h2>Список фильмов</h2>
+<table border="1|1">
+    {% for m in movie_data %}
+    <tr>
+        <td><a href = "movie/{{m}}">{{m}}</td>
+        <td><button onclick=del_movie("{{m}}")>Удалить</button></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="/add_movie" method="post">
+    <p>Название фильма:</p>
+    <input type="text" name="name">
+    <input type="hidden" name="list_type" value="movie"/>
+    <input type="submit" value="Добавить"/>
+</form>
+
+<!-- <a href = "/hall_add"> add_hall</a> -->
+
+<h2>Список залов</h2>
+<table border="1|1">
+    {% for m in hall_data %}
+    <tr>
+        <td><a href = "hall/{{m}}">{{m}}</td>
+        <td><button onclick=del_hall("{{m}}")>Удалить</button></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="/add_hall" method="post">
+    <p>Название зала:</p>
+    <input type="text" name="name">
+    <p>Кол-во рядов:</p>
+    <input type="text" name="row">
+    <p>Кол-во мест:</p>
+    <input type="text" name="column">
+    <input type="hidden" name="list_type" value="hall"/>
+    <input type="submit" value="Добавить"/>
+</form>
+
+<button onclick=gen_session()>Сгенерировать сеансы</button>
+
+
+
+{% endblock %}
